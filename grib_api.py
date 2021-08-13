@@ -64,7 +64,7 @@ class GribAPI:
             return self.description
 
         @app.get("/getData")
-        def get_data(dataset:str, band:int, lat:float, lon:float):
+        def get_data(lat:float, lon:float, dataset:str, band:int=1):
             '''Returns data for given dataset, band and coordinates
             '''
             
@@ -81,7 +81,8 @@ class GribAPI:
                 resp = {
                             "request":{
                                 "dataset":dataset,
-                                "band":band
+                                "band":band,
+                                "lat_lon":[lat, lon]
                             },
                             "data":value
                 }
